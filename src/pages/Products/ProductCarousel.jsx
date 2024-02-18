@@ -1,6 +1,6 @@
-import { useGetProductsQuery } from "../../redux/api/productApiSlice";
+import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
 import Message from "../../components/Message";
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,17 +14,16 @@ import {
 } from "react-icons/fa";
 
 const ProductCarousel = () => {
-  // const { data: products, isLoading, error } = useGetTopProductsQuery();
-  const [keyword, setKeyword] = useState('');
-  const { data, isLoading, error } = useGetProductsQuery({ keyword });
+  const { data: products, isLoading, error } = useGetTopProductsQuery();
+  // const [keyword, setKeyword] = useState('');
+  // const { data, isLoading, error } = useGetProductsQuery({ keyword });
 
-  useEffect(() => {
-    const lastSearch = localStorage.getItem('lastSearch');
-    if (lastSearch) {
-      setKeyword(lastSearch);
-    }
-  }, []);
-
+  // useEffect(() => {
+  //   const lastSearch = localStorage.getItem('lastSearch');
+  //   if (lastSearch) {
+  //     setKeyword(lastSearch);
+  //   }
+  // }, []);
 
   const settings = {
     dots: false,
@@ -38,7 +37,7 @@ const ProductCarousel = () => {
   };
 
   return (
-    <div className="mb-4 lg:block xl:block md:block">
+    <div className="mb-4 ml-10 lg:block xl:block md:block">
       {isLoading ? null : error ? (
         <Message variant="danger">
           {error?.data?.message || error.error}
@@ -46,9 +45,9 @@ const ProductCarousel = () => {
       ) : (
         <Slider
           {...settings}
-          className="xl:w-[50rem]  lg:w-[50rem] md:w-[56rem] sm:w-[40rem] sm:block"
+          className="xl:w-[70rem]  lg:w-[50rem] md:w-[56rem] sm:w-[40rem] sm:block"
         >
-          {data.products.map(
+          {products.map(
             ({
               image,
               _id,
