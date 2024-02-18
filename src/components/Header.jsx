@@ -49,6 +49,11 @@ const Header = () => {
           )}
         </div>
       </div>
+      {data.products.length > 0 && (
+    <div className="text-center mt-8 text-xl text-light">
+      These products are recommended based on your interaction with the website and your search history.
+    </div>
+  )}
     </>
   );
 };
