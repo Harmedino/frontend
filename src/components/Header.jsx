@@ -6,12 +6,17 @@ import ProductCarousel from "../pages/Products/ProductCarousel";
 
 const Header = () => {
   const [keyword, setKeyword] = useState("");
-  const { data, isLoading } = useGetProductsQuery({ keyword });
+  const { data, isLoading } = useGetProductsQuery({ keyword: keyword });
+  // console.log(data);
 
   useEffect(() => {
     const lastSearch = localStorage.getItem("lastSearch");
     if (lastSearch) {
-      setKeyword(lastSearch);
+      const searchArray = lastSearch.split(","); // Split the string into an array
+      searchArray.forEach((searchTerm) => {
+        setKeyword((prevKeywords) => [...prevKeywords, searchTerm]); // Add each search term to the keyword array
+      });
+      console.log(keyword);
     }
   }, []);
 
@@ -50,10 +55,11 @@ const Header = () => {
         </div>
       </div>
       {data.products.length > 0 && (
-    <div className="text-center mt-8 text-xl text-light">
-      These products are recommended based on your interaction with the website and your search history.
-    </div>
-  )}
+        <div className="text-center mt-8 text-xl text-light">
+          These products are recommended based on your interaction with the
+          website and your search history.
+        </div>
+      )}
     </>
   );
 };

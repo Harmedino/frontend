@@ -1,4 +1,4 @@
-import { PRODUCT_URL, UPLOAD_URL } from "../constants";
+import { PRODUCT_URL, UPLOAD_URL} from "../constants";
 import { apiSlice } from "./apiSlice";
 
 export const productApiSlice = apiSlice.injectEndpoints({
@@ -22,6 +22,8 @@ export const productApiSlice = apiSlice.injectEndpoints({
     allProducts: builder.query({
       query: () => `${PRODUCT_URL}/allProducts`,
     }),
+
+ 
 
     getProductDetails: builder.query({
       query: (productId) => ({
@@ -71,9 +73,22 @@ export const productApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    sendSearch: builder.mutation({
+      query: (data) => ({
+        url: `${PRODUCT_URL}/search`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
     getTopProducts: builder.query({
       query: () => `${PRODUCT_URL}/top`,
       keepUnusedDataFor: 5,
+    }),
+
+    getSearchProducts: builder.query({
+      query: () => `${PRODUCT_URL}/search`,
+      keepUnusedDataFor: 10,
     }),
 
     getNewProducts: builder.query({
@@ -96,6 +111,7 @@ export const {
   useGetProductsQuery,
   useGetProductDetailsQuery,
   useAllProductsQuery,
+  useMostSearchQuery,
   useCreateProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
@@ -104,4 +120,6 @@ export const {
   useGetNewProductsQuery,
   useUploadProductImageMutation,
   useGetFilteredProductsQuery,
+  useSendSearchMutation,
+  useGetSearchProductsQuery
 } = productApiSlice;
