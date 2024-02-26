@@ -1,0 +1,115 @@
+.hero {
+  background-image: url("https://media.istockphoto.com/id/1418045846/photo/email-phone-website-contact-us-website-banner-marketing.webp?b=1&s=170667a&w=0&k=20&c=Ln3XGXD1qDcQOu5igbrB7TY2_T-pOI2lGy0y-RHu87Y=");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 4rem 0;
+  height: 50vh;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), transparent);
+  box-shadow: inset 0px 100px 250px #000000;
+}
+
+.heroContent {
+  max-width: 800px;
+  position: absolute;
+  z-index: 300;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 2rem;
+}
+
+/* ContactForm.module.css */
+.contactForm {
+  background-color: #f9f9f9;
+  width: 70%;
+  margin: auto;
+  border-radius: 5px;
+  margin-top: 40px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  width: 70%;
+}
+
+.contactForm h2 {
+  margin-bottom: 1.5rem;
+  color: #f11a1a;
+  text-align: left;
+  text-transform: uppercase;
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  color: black;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 10px;
+  margin: auto;
+}
+
+.formGroup textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #f11a1a;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #533bbe;
+}
+
+@media (max-width: 500px) {
+  form {
+    width: 90%;
+    margin: auto;
+  }
+}

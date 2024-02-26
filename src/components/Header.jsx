@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../redux/api/productApiSlice";
 import Loader from "./Loader";
 import SmallProduct from "../pages/Products/SmallProduct";
 import ProductCarousel from "../pages/Products/ProductCarousel";
+import image from "../image/background.avif";
 
 const Header = () => {
   const [keyword, setKeyword] = useState("");
   const { data, isLoading } = useGetProductsQuery({ keyword: keyword });
-  // console.log(data);
+  console.log(data);
 
   useEffect(() => {
     const lastSearch = localStorage.getItem("lastSearch");
@@ -26,6 +28,34 @@ const Header = () => {
 
   return (
     <>
+      <div className="bg-gray-900">
+        <div className="container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+            <div className="md:order-2">
+              <img
+                className="mx-auto md:mx-0 w-full h-full object-cover md:max-w-none"
+                src={image}
+                alt="Hero Image"
+              />
+            </div>
+            <div className="text-white">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Welcome to Our E-Commerce Store
+              </h1>
+              <p className="text-lg mb-8">
+                Discover amazing products and shop with confidence.
+              </p>
+              <Link
+                to="/shop"
+                className="bg-pink-600 font-bold rounded-full py-2 px-10"
+              >
+                Shop Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="text-center mt-8 mb-6 text-2xl font-bold text-pink-800">
         Top Products
       </div>
