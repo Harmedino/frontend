@@ -13,6 +13,8 @@ const Searchbar = () => {
   const { data, isLoading, isError } = useGetProductsQuery({ keyword });
   const [search] = useSendSearchMutation();
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Get the value of the input field
@@ -24,7 +26,7 @@ const Searchbar = () => {
       return;
     }
     const result = await search({ value, user: userInfo._id });
-    localStorage.setItem("lastSearch", result.data.recommendation );
+    localStorage.setItem("lastSearch", result.data.recommendation);
     console.log(result.data.recommendation);
   };
 
@@ -55,9 +57,15 @@ const Searchbar = () => {
           ) : isError ? (
             <div>Error fetching data</div>
           ) : data?.products.length === 0 && keyword === "" ? ( // Check if keyword is empty
-            <div>No products searched yet</div> // Display initial text
-          ) : data?.products.length === 0 ? (
-            <div>No products found</div>
+            <div className="flex justify-center items-center h-48">
+              <p className="text-gray-500 text-lg text-center">
+                No products have been searched yet. Try searching for something
+                to discover amazing products!
+              </p>
+            </div>
+          ) : // Display initial text
+          data?.products.length === 0 ? (
+            <div className="flex justify-center items-center h-48">No products found</div>
           ) : (
             data?.products.map((p) => {
               return (

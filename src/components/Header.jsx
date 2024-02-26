@@ -5,20 +5,17 @@ import Loader from "./Loader";
 import SmallProduct from "../pages/Products/SmallProduct";
 import ProductCarousel from "../pages/Products/ProductCarousel";
 import image from "../image/background.avif";
+import Review from "./Review";
 
 const Header = () => {
   const [keyword, setKeyword] = useState("");
   const { data, isLoading } = useGetProductsQuery({ keyword: keyword });
-  console.log(data);
 
   useEffect(() => {
     const lastSearch = localStorage.getItem("lastSearch");
     if (lastSearch) {
-      const searchArray = lastSearch.split(","); // Split the string into an array
-      searchArray.forEach((searchTerm) => {
-        setKeyword((prevKeywords) => [...prevKeywords, searchTerm]); // Add each search term to the keyword array
-      });
-      console.log(keyword);
+      setKeyword(lastSearch);
+      console.log(lastSearch);
     }
   }, []);
 
@@ -90,6 +87,7 @@ const Header = () => {
           website and your search history.
         </div>
       )}
+      <Review/>
     </>
   );
 };
